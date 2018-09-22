@@ -1,12 +1,18 @@
 .inwrapper {
-    border-image: linear-gradient(to right, );
-    border-image-slice: 1;
-    border-width: 10px;
+    /*border-image: linear-gradient(to bottom, #98FB98, #FFFFFF);*/
+    border-color: aqua; 
+    border-width: 50px;
     border-radius: 10px;
+    box-shadow: 1px 1px 5px lightgrey;
+    padding: 5px;
 }
 
 .outwrapper {
-    
+    border-image: linear-gradient(to right, #FF7D7D, #FFFFFF) 30 round;
+    border-width: 5px;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 1px 1px 5px lightgrey;
 }
 
 .textright {
@@ -21,6 +27,14 @@ body {
 
 html {
     height: 100%;
+}
+
+.whiteBackground {
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+    width: 90%;
+    padding: 8px;
 }
 /**#element1 {display:inline-block;margin-right:10px;} 
 #element2 {display:inline-block;}**/
