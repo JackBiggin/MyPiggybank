@@ -14,3 +14,29 @@ body {
     margin-bottom: 1em;
     border-radius: 10px;
 }
+
+.sidebar {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding: 1em;
+}
+
+
+.sidebar .avatar {
+    padding: 0.1em;
+    text-align: center;
+    font-size: 5em;
+    background-color: #576CA8;
+    color: #D5F2EB;
+    border-radius: 10px;
+    margin-bottom: 0.1em;
+}
+
+.menu-option {
+    background-color: #4E8098;
+    color: #ffffef;
+}
+
+.menu-option fa {
+    font-size: 4em;
+}
