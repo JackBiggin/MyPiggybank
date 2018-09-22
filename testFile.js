@@ -183,5 +183,6 @@ var largeTransactionArray = [
     }
   ]
 }
+]
 
-loadTransactionList(largeTransactionArray)
+displayTransactionList(largeTransactionArray);
