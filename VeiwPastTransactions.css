@@ -1,0 +1,26 @@
+.inwrapper {
+    border-image: linear-gradient(to right, );
+    border-image-slice: 1;
+    border-width: 10px;
+    border-radius: 10px;
+}
+
+.outwrapper {
+    
+}
+
+.textright {
+    text-align:right;
+}
+
+body {
+    background-image: linear-gradient(to top, #FFFFFF, #6DD5FA 50%, #2980B9 100%);
+    background-size: fill;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+/**#element1 {display:inline-block;margin-right:10px;} 
+#element2 {display:inline-block;}**/
