@@ -21,7 +21,7 @@ function loadTransactionList(largeTransactionArray) {
 				wrapperClass = "inwrapper";
 				moneyString = String(transaction.amount) + " " + transaction.currency;
 			}
-			var newTransaction = "<div class='" + wrapperClass + "'  id='" + transaction.id + "' transaction.onclick='toggleDetails(this.id)'>";
+			var newTransaction = "<div class='" + wrapperClass + "'  id='" + transaction.id + "' onclick='toggleDetails(this.id)'>";
 			newTransaction += "<table width='100%'><tbody><tr><td><h1>" + transaction.narrative + " (";
 			newTransaction += transaction.created.substring(0,10) + ")</h1></td><td>";
 			newTransaction += "<h2 class='textRight'>" + moneyString + "</h2></td></tr></tbody></table>";
@@ -38,7 +38,7 @@ function loadTransactionList(largeTransactionArray) {
 
 function toggleDetails(id) {
 	var currentState = document.getElementById("details_" + id).style.display;
-	if (currentState.contains("none")) {
+	if (currentState.indexOf("none") > -1) {
 		document.getElementById("details_" + id).style.display = "block";
 	} else {
 		document.getElementById("details_" + id).style.display = "none";
