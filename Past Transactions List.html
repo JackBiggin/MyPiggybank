@@ -12,18 +12,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./assets/css/app.css">
-    
-    <script type="text/javascript" src="transactionList.js"></script>
+    <link rel="stylesheet" href="All%20Site%20Styles.css">
+
+	<script type="text/javascript" src="transactionList.js"></script>
 
     <title>myPiggybank</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">myPiggybank</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler pull-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        
+        
         <span class="navbar-toggler-icon"></span>
       </button>
+        <a class="navbar-brand p" href="#"> myPiggybank</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -48,57 +51,16 @@
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+                
         </div>
     </nav><br />
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-8">
-                <div class="card menu-option">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-3">
-                                <i class="fas fa-credit-card"></i>
-                            </div>
-                            <div class="col-9">
-                                <h2 class="card-title">View Past Transctions</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Lets go!</a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Make a Budget</h2>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Lets go!</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Predict the Future</h2>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Lets go!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="sidebar">
-                    <div class="avatar"><i class="fas fa-fw fa-user"></i></div>
-
-                    Hi there, NAME!
-                </div>
-            </div>
+        <div class="whiteBackground" id="transactionList">
+        <p class="outwrapper">Out</p>
+        <p class="inwrapper">In</p>
         </div>
     </div>
+	<script type="text/javascript" src="testFile.js"></script>
 
 
     <!-- Optional JavaScript -->

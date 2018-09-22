@@ -1,0 +1,47 @@
+.inwrapper {
+    border-style: solid;
+    border-width: 5px;
+    border-image: linear-gradient(to bottom, #98FB98, #FFFFFF);
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px lightgrey;
+    padding: 5px;
+    border-image-slice: 1;
+}
+
+.outwrapper {
+    border-image: linear-gradient(to bottom, #FF7D7D, #FFFFFF);
+    border-width: 5px;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 1px 1px 5px lightgrey;
+    border-image-slice: 1;
+    border-style: solid;
+}
+
+.textright {
+    text-align:right;
+}
+
+body {
+    background-image: linear-gradient(to top, #FFFFFF, #6DD5FA 50%, #2980B9 100%);
+    background-size: fill;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.whiteBackground {
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+}
+/**#element1 {display:inline-block;margin-right:10px;} 
+#element2 {display:inline-block;}**/
+
+.button {
+    float:left;
+}
