@@ -1,0 +1,16 @@
+body {
+    background-color: #fffeff;
+}
+
+.navbar-dark {
+    padding: 1em;
+}
+
+.bg-dark {
+    background-color: #253C78 !important;
+}
+
+.card {
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
