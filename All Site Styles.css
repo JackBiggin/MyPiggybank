@@ -18,7 +18,7 @@
     border-style: solid;
 }
 
-.textright {
+.textRight {
     text-align:right;
 }
 
@@ -37,7 +37,7 @@ html {
     border-radius: 10px;
     height: 100%;
     width: 100%;
-    padding: 8px;
+    padding: 15px;
 }
 /**#element1 {display:inline-block;margin-right:10px;} 
 #element2 {display:inline-block;}**/
