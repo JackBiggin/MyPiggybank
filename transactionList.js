@@ -46,7 +46,7 @@ function loadTransactionCategories() {
 		}
 		if (!added) {
 			var newSection = {
-				"category": dataParse(transaction.spendingCategory),
+				"category": transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />")),
 				"amount": parseInt(transaction.substring(transaction.indexOf("£")+1,transaction.indexOf("</h3>"))),
 				"transactionsList": transaction,
 				"header1": "<div class='section'><table id='" + transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />")) + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />")) + "</h2></td><td><h3 class='textRight'>",
