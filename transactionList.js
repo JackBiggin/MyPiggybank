@@ -1,3 +1,4 @@
+var transactionCategories;
 var startDate = "beginning";
 var endDate = "end";
 var total = 0;
@@ -12,13 +13,13 @@ function loadLargeTransactionArray() {
 			transactions.push(loadSingleTransaction(rawTransactions[i]));
 			console.log("1: " + i);
 		}
-		document.getElementById("transactionList").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
-		//document.getElementById("transactionCategories").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+		document.getElementById("transactionHeader").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
 		for (var i = 0; i < transactions.length; i++) {
 			document.getElementById("transactionList").innerHTML += transactions[i];
 			console.log("2: " + i);
 		}
 		loadMasterCardData();
+		
 	});
 }
 
@@ -32,27 +33,17 @@ function displayTransactionCategories() {
 	document.getElementById("transactionList").innerHTML = temp;
 }
 
-function loadTransactionList() {
-	var largeTransactionArray = loadLargeTransactionArray();
-	total = 0;
-	for (var t = 0; t < largeTransactionArray.length; t++) {
-		total += largeTransactionArray[t].amount;
-		transactionsListOutput += loadSingleTransaction(largeTransactionArray[t]);
-	}
-}
-
 function loadTransactionCategories() {
-	var largeTransactionArray = loadLargeTransactionArray();
-	total = 0;
+	transactionCategories = "";
+	var largeTransactionArray = document.getElementById("transactionList").innerHTML.split("</div></div>");
 	var sections = [];
 		for (var t = 0; t < largeTransactionArray.length; t++) {
 		var transaction = largeTransactionArray[t];
-		total += largeTransactionArray[t].amount;
 		var added = false;
 		for (var s = 0; s < sections.length; s++) {
-			if (sections[s].category.indexOf(dataParse(transaction.spendingCategory)) > -1) {
+			if (sections[s].category.indexOf(transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />"))) > -1) {
 				added = true;
-				sections[s].amount += transaction.amount;
+				sections[s].amount += parseInt(transaction.substring(transaction.indexOf("£")+1,transaction.indexOf("</h3>")));
 				sections[s].transactionsList += loadSingleTransaction(transaction);
 			}
 			break;
@@ -60,17 +51,16 @@ function loadTransactionCategories() {
 		if (!added) {
 			var newSection = {
 				"category": dataParse(transaction.spendingCategory),
-				"amount": transaction.amount,
-				"percent": 0,
-				"transactionsList": loadSingleTransaction(transaction),
-				"header1": "<div class='section'><table id='" + dataParse(transaction.spendingCategory) + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + dataParse(transaction.spendingCategory) + "</h2></td><td><h3 class='textRight'>",
-				"header2": "</h3></td></tr></tbody></table><div id='details_" + dataParse(transaction.spendingCategory) + "' style='display: none;'>"
+				"amount": parseInt(transaction.substring(transaction.indexOf("£")+1,transaction.indexOf("</h3>"))),
+				"transactionsList": transaction,
+				"header1": "<div class='section'><table id='" + transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />")) + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />")) + "</h2></td><td><h3 class='textRight'>",
+				"header2": "</h3></td></tr></tbody></table><div id='details_" + transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />")) + "' style='display: none;'>"
 			}
 			sections.push(newSection);
 		}
 	}
 	for (var s = 0; s < sections.length; s++) {
-		transactionsCategoriesOutput += sections[s].header1 + sections[s].amount + sections[s].header2 + sections[s].transactionsList + "</div></div>";
+		transactionsCategories += sections[s].header1 + sections[s].amount + sections[s].header2 + sections[s].transactionsList + "</div></div>";
 	}
 }
 
@@ -91,7 +81,7 @@ function loadSingleTransaction(transaction) {
 		newTransaction += "<div id='details_" + transaction.id + "' style='display: none;'>";
 		newTransaction += "<strong>Source: </strong>" + dataParse(transaction.source) + "<br />";
 		if (transaction.source.indexOf("MASTER") == -1) {
-			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.source) + "<br />";
+			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.source) + "<br id='flag' />";
 		}
 		newTransaction += "</div></div>";
 		return newTransaction;
@@ -103,7 +93,7 @@ function loadMasterCardData() {
 		for (var i = 0; i < data._embedded.transactions.length; i++) {
 			var transaction = data._embedded.transactions[i];
 			var newTransaction = "<strong>Payment Method: </strong>" + dataParse(transaction.mastercardTransactionMethod) + "<br />";
-			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.spendingCategory) + "<br />";
+			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.spendingCategory) + "<br id='flag' />";
 			newTransaction += "<strong>Country: </strong>" + transaction.country + "<br />";
 			newTransaction += "<strong>Address of Transaction: </strong><span class='address' id='address_" + transaction.id + "'>" + transaction.narrative + "</span><br />";
 			switch(transaction.narrative) { // We're not trying to cheat, just our sandbox account doesnt include merchant access
