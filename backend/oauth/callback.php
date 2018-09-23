@@ -24,6 +24,6 @@
     echo $content . "----";
     $access_token = $user_data['access_token'];
 
-    header("Location: http://localhost/myPiggybank/backend/oauth/grab_data.php?access_token=$access_token");
+    header("Location: ./grab_data.php?access_token=$access_token");
 
     

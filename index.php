@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -28,7 +31,7 @@
         
         <span class="navbar-toggler-icon"></span>
       </button>
-        <a class="navbar-brand p" href="#"> myPiggybank</a>
+        <a class="navbar-brand p" href="./"><img src="./assets/logo_white.png" style="width:1.5em;height:auto" /> MyPiggybank</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -41,7 +44,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8">
-                <div id="test" class="card menu-option" onclick="window.open('./pasttransactions.php')">
+                <div id="test" class="card menu-option" onclick="window.open('./pasttransactions.html')">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-3">
@@ -56,7 +59,7 @@
 
                     </div>
                 </div>
-                <div class="card menu-option" onclick="window.open('./forecast.php')">
+                <div class="card menu-option" onclick="window.open('./forecast.html')">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
@@ -69,7 +72,7 @@
                     </div>
                 </div>
                 </div>
-                                <div class="card menu-option" onclick="window.open('./budget.php')">
+                                <div class="card menu-option" onclick="window.open('./createBudget.html')">
                 <div class="card-body">
                         <div class="row">
                             <div class="col-3">
@@ -89,7 +92,7 @@
                 <div class="sidebar">
                     <div class="avatar"><i class="fas fa-fw fa-user"></i></div>
 
-                    Hi there, NAME!
+                    <div style="text-align: center;font-size:1.2em;">Hi there, <?php echo $_SESSION['name']; ?>!</div>
 
                 <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
@@ -152,7 +155,7 @@
                   </a>
                 </div>
             </div> -->
-                <br/><br />
+                <br/>
                 <hr/>
                 <H3>Finance tip:</H3>
                 <div id="randomFact">

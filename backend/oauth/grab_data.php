@@ -43,5 +43,6 @@ $access_token = $_GET['access_token'];
 
     session_start();
     $_SESSION['access_token'] = $access_token;
-    $_SESSION['name'] = $fname . ' ' . $sname;
+    $_SESSION['name'] = $fname;
 
+    header("Location: ../../index.php");
