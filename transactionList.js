@@ -1,4 +1,4 @@
-var transactionCategories;
+var transactionsCategories;
 var startDate = "beginning";
 var endDate = "end";
 var total = 0;
@@ -30,7 +30,7 @@ function displayTransactionCategories() {
 }
 
 function loadTransactionCategories() {
-	transactionCategories = "";
+	transactionsCategories = "";
 	var largeTransactionArray = document.getElementById("transactionList").innerHTML.split("</div></div>");
 	var sections = [];
 		for (var t = 0; t < largeTransactionArray.length; t++) {
