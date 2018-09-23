@@ -5,7 +5,7 @@ var endDate = "end";
 var total = 0;
 
 function loadLargeTransactionArray() {
-	jQuery.getJSON("./backend/get_transactions.php", function(json) {
+	return jQuery.getJSON("./backend/get_transactions.php", function(json) {
 		return json._embedded.transactions;
 	});
 }
