@@ -11,13 +11,13 @@ function loadLargeTransactionArray() {
 		for (var i = 0; i < rawTransactions.length; i++) {
 			total += rawTransactions[i].amount;
 			transactions.push(loadSingleTransaction(rawTransactions[i]));
-			console.log("1: " + i);
+			// console.log("1: " + i);
 		}
 		document.getElementById("transactionHeader").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
 		document.getElementById("transactionList").innerHTML = "";
 		for (var i = 0; i < transactions.length; i++) {
 			document.getElementById("transactionList").innerHTML += transactions[i];
-			console.log("2: " + i);
+			// console.log("2: " + i);
 		}
 		loadMasterCardData();
 		
@@ -90,7 +90,7 @@ function loadSingleTransaction(transaction) {
 
 function loadMasterCardData() {
 	$.getJSON('./backend/get_mastercardInfo.php', function(data) {
-		console.log(data._embedded.transactions);
+		// console.log(data._embedded.transactions);
 		for (var i = 0; i < data._embedded.transactions.length; i++) {
 			var transaction = data._embedded.transactions[i];
 			var newTransaction = "<strong>Payment Method: </strong>" + dataParse(transaction.mastercardTransactionMethod) + "<br />";
