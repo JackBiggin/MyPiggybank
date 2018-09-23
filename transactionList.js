@@ -6,10 +6,7 @@ var total = 0;
 
 function loadLargeTransactionArray() {
 	jQuery.getJSON("./backend/get_transactions.php", function(json) {
-		console.log(json._embedded.transactions);
-		var largeTransactionArray = [json._embedded.transactions];
-		console.log(largeTransactionArray);
-		return largeTransactionArray;
+		return json._embedded.transactions;
 	});
 }
 
@@ -38,13 +35,9 @@ function displayTransactionCategories() {
 function loadTransactionList() {
 	var largeTransactionArray = loadLargeTransactionArray();
 	total = 0;
-	for (var i = 0; i < largeTransactionArray.length; i++) {
-		var pageTransactionsArray = largeTransactionArray[i].transactions;
-		for (var t = 0; t < pageTransactionsArray.length; t++) {
-			total += pageTransactionsArray[t].amount;
-			transactionsListOutput += loadSingleTransaction(pageTransactionsArray[t]);
-			
-		}
+	for (var t = 0; t < largeTransactionArray.length; t++) {
+		total += largeTransactionArray[t].amount;
+		transactionsListOutput += loadSingleTransaction(largeTransactionArray[t]);
 	}
 }
 
@@ -52,31 +45,28 @@ function loadTransactionCategories() {
 	var largeTransactionArray = loadLargeTransactionArray();
 	total = 0;
 	var sections = [];
-	for (var i = 0; i < largeTransactionArray.length; i++) {
-		var pageTransactionsArray = largeTransactionArray[i].transactions;
-		for (var t = 0; t < pageTransactionsArray.length; t++) {
-			var transaction = pageTransactionsArray[t];
-			total += pageTransactionsArray[t].amount;
-			var added = false;
-			for (var s = 0; s < sections.length; s++) {
-				if (sections[s].category.indexOf(dataParse(transaction.spendingCategory)) > -1) {
-					added = true;
-					sections[s].amount += transaction.amount;
-					sections[s].transactionsList += loadSingleTransaction(transaction);
-				}
-				break;
+		for (var t = 0; t < largeTransactionArray.length; t++) {
+		var transaction = largeTransactionArray[t];
+		total += largeTransactionArray[t].amount;
+		var added = false;
+		for (var s = 0; s < sections.length; s++) {
+			if (sections[s].category.indexOf(dataParse(transaction.spendingCategory)) > -1) {
+				added = true;
+				sections[s].amount += transaction.amount;
+				sections[s].transactionsList += loadSingleTransaction(transaction);
 			}
-			if (!added) {
-				var newSection = {
-					"category": dataParse(transaction.spendingCategory),
-					"amount": transaction.amount,
-					"percent": 0,
-					"transactionsList": loadSingleTransaction(transaction),
-					"header1": "<div class='section'><table id='" + dataParse(transaction.spendingCategory) + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + dataParse(transaction.spendingCategory) + "</h2></td><td><h3 class='textRight'>",
-					"header2": "</h3></td></tr></tbody></table><div id='details_" + dataParse(transaction.spendingCategory) + "' style='display: none;'>"
-				}
-				sections.push(newSection);
+			break;
+		}
+		if (!added) {
+			var newSection = {
+				"category": dataParse(transaction.spendingCategory),
+				"amount": transaction.amount,
+				"percent": 0,
+				"transactionsList": loadSingleTransaction(transaction),
+				"header1": "<div class='section'><table id='" + dataParse(transaction.spendingCategory) + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + dataParse(transaction.spendingCategory) + "</h2></td><td><h3 class='textRight'>",
+				"header2": "</h3></td></tr></tbody></table><div id='details_" + dataParse(transaction.spendingCategory) + "' style='display: none;'>"
 			}
+			sections.push(newSection);
 		}
 	}
 	for (var s = 0; s < sections.length; s++) {
