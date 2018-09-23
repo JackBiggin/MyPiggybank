@@ -41,6 +41,7 @@ $access_token = $_GET['access_token'];
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$uid, $access_token, $fname, $sname]);
 
-    $_SESSION['accesss_token'] = $access_token;
+    session_start();
+    $_SESSION['access_token'] = $access_token;
     $_SESSION['name'] = $fname . ' ' . $sname;
-    
+
