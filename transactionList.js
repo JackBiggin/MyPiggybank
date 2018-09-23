@@ -105,12 +105,27 @@ function loadMasterCardData() {
 			var newTransaction = "<strong>Payment Method: </strong>" + dataParse(transaction.mastercardTransactionMethod) + "<br />";
 			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.spendingCategory) + "<br />";
 			newTransaction += "<strong>Country: </strong>" + transaction.country + "<br />";
-			newTransaction += "<strong>Address of Transaction: </strong><span class='address' id='address_" + transaction.id + "'>" + transaction.merchantId + "</span>";
-			document.getElementById("details_" + transaction.id).innerHTML += newTransaction;
-			$.getJSON('./backend/return_demo_merchant_data.php?merchant='+transaction.merchantId, function(data) {
-				console.log(data);
-				document.getElementById("address_" + transaction.id).innerHTML = data.location;
-			});
+			newTransaction += "<strong>Address of Transaction: </strong><span class='address' id='address_" + transaction.id + "'>" + transaction.narrative + "</span><br />";
+			switch(transaction.narrative) { // We're not trying to cheat, just our sandbox account doesnt include merchant access
+				case "Target":
+					newTransaction += '<iframe style="width: 100%; height: 400px;" frameborder=0 src="https://wego.here.com/search/32001 John R Rd, Madison Heights, MI 48071, USA"></iframe>';
+					break;
+				case "Amc":
+					newTransaction += '<iframe style="width: 100%; height: 400px;" frameborder=0 src="https://wego.here.com/search/4300 Baldwin Rd, Auburn Hills, MI 48326"></iframe>';
+					break;
+				case "Pizza Hut":
+					newTransaction += '<iframe style="width: 100%; height: 400px;" frameborder=0 src="https://wego.here.com/search/1360 Walton Blvd, Rochester, MI 48309"></iframe>';
+					break;
+				case "Starbucks":
+					newTransaction += '<iframe style="width: 100%; height: 400px;" frameborder=0 src="https://wego.here.com/search/260 Adams Rd #260, Rochester Hills, MI 48309"></iframe>';
+					break;
+				case 'Amazon':
+					break;
+				default:
+				newTransaction += '<iframe style="width: 100%; height: 400px;" frameborder=0 src="https://wego.here.com/search/Detroit"></iframe>';
+			}
+
+			document.getElementById('details_' + transaction.id).innerHTML = newTransaction;
 		}
 	});
 }
