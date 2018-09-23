@@ -6,10 +6,8 @@ var total = 0;
 
 function loadLargeTransactionArray() {
 	$.getJSON('./backend/get_transactions.php', function(data) {
-		console.log(data._embedded.transactions['0']);
-		var i;
-		for (i=0; i < data._embedded.transactions.length; i++) {
-			console.log(data._embedded.transactions[i]);
+		for (var i = 0; i < data._embedded.transactions.length; i++) {
+			document.getElementById("temp").innerHTML += loadSingleTransaction(data._embedded.transactions[i]);
 		}
 	});
 }
