@@ -25,7 +25,8 @@ function loadLargeTransactionArray() {
 
 function displayTransactionCategories() {
 	if (document.getElementById("transactionList").innerHTML.indexOf("section") == -1) {
-		document.getElementById("transactionList").innerHTML = loadTransactionCategories();
+		loadTransactionCategories();
+		document.getElementById("transactionList").innerHTML = transactionsCategories;
 	}
 }
 
