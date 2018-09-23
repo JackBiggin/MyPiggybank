@@ -40,7 +40,7 @@ function loadTransactionCategories() {
 			if (sections[s].category.indexOf(transaction.substring(transaction.indexOf("<strong>Category: </strong>")+27, transaction.indexOf("<br id='flag' />"))) > -1) {
 				added = true;
 				sections[s].amount += parseInt(transaction.substring(transaction.indexOf("£")+1,transaction.indexOf("</h3>")));
-				sections[s].transactionsList += loadSingleTransaction(transaction);
+				sections[s].transactionsList += transaction;
 			}
 			break;
 		}
