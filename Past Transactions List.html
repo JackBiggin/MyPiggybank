@@ -55,9 +55,12 @@
         </div>
     </nav><br />
     <div class="container">
-        <div class="whiteBackground" id="transactionList">
-        <p class="outwrapper">Out</p>
-        <p class="inwrapper">In</p>
+		<div class="whiteBackground">
+			<div>
+				<div class='button' onclick='displayTransactionList(largeTransactionArray)'>Display Transactions by Date</div>
+				<div class='button' onclick='displayTransactionCategories(largeTransactionArray)'>Display Transactions by Category</div>
+			</div>
+			<div id="transactionList"></div>
         </div>
     </div>
 	<script type="text/javascript" src="testFile.js"></script>
