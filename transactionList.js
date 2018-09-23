@@ -14,6 +14,7 @@ function loadLargeTransactionArray() {
 			console.log("1: " + i);
 		}
 		document.getElementById("transactionHeader").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+		document.getElementById("transactionList").innerHTML = "";
 		for (var i = 0; i < transactions.length; i++) {
 			document.getElementById("transactionList").innerHTML += transactions[i];
 			console.log("2: " + i);
