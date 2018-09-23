@@ -35,7 +35,12 @@ function displayTransactionCategories() {
 
 function loadTransactionCategories() {
 	transactionsCategories = "";
-	var largeTransactionArray = document.getElementById("transactionList").innerHTML.split(/<\/div>\s+<\/div>/);
+	var largeTransactionArray = [];
+	var input = document.getElementById("transactionList").innerHTML.split(/<\/div>\s+<\/div>/);
+	while(input.length > -1) {
+		largeTransactionArray.push(input.substring(0, input.indexOf("</div>")+10));
+		input = input.substring(input.indexOf("</div>")+10);
+	}
 	console.log("Starting loop");
 	for (var i = 0; i < largeTransactionArray; i++) {
 		console.log(largeTransactionArray[i]);
