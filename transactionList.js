@@ -5,6 +5,16 @@ var startDate = "beginning";
 var endDate = "end";
 var total = 0;
 
+function loadLargeTransactionArray() {
+	jQuery.getJSON("./backend/get_transactions.php", function(json) {
+		console.log(json._embedded.transactions);
+		largeTransactionArray = [json._embedded.transactions];
+		console.log(largeTransactionArray);
+	});
+}
+
+loadLargeTransactionArray();
+
 function displayTransactionList() {
 	if (transactionsListOutput == null) {
 		transactionsListOutput = "";
@@ -144,14 +154,5 @@ function updateDateFilter() {
 	document.getElementById("enddate").value = "";
 }
 
-function loadLargeTransactionArray() {
-	jQuery.getJSON("./backend/get_transactions.php", function(json) {
-		console.log(json._embedded.transactions);
-		largeTransactionArray = [json._embedded.transactions];
-		console.log(largeTransactionArray);
-	});
-}
-
-loadLargeTransactionArray();
 console.log(largeTransactionArray);
 displayTransactionList();
