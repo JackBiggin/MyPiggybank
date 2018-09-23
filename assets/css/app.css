@@ -15,6 +15,11 @@ body {
     border-radius: 10px;
 }
 
+.card:hover {
+    background: #dcdde1;
+    transition: background 0.5s;
+}
+
 .sidebar {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, .125);
