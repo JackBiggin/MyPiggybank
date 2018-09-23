@@ -35,6 +35,7 @@ body {
 .menu-option {
     background-color: #FFFFFF;
     color: #000000;
+    cursor: pointer;
 }
 
 .menu-option fa {
