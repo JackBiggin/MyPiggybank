@@ -1,4 +1,3 @@
-var largeTransactionArray;
 var transactionsListOutput = null;
 var transactionsCategoriesOutput = null;
 var startDate = "beginning";
@@ -8,8 +7,9 @@ var total = 0;
 function loadLargeTransactionArray() {
 	jQuery.getJSON("./backend/get_transactions.php", function(json) {
 		console.log(json._embedded.transactions);
-		largeTransactionArray = [json._embedded.transactions];
+		var largeTransactionArray = [json._embedded.transactions];
 		console.log(largeTransactionArray);
+		return largeTransactionArray;
 	});
 }
 
@@ -36,6 +36,7 @@ function displayTransactionCategories() {
 }
 
 function loadTransactionList() {
+	var largeTransactionArray = loadLargeTransactionArray();
 	total = 0;
 	for (var i = 0; i < largeTransactionArray.length; i++) {
 		var pageTransactionsArray = largeTransactionArray[i].transactions;
@@ -48,6 +49,7 @@ function loadTransactionList() {
 }
 
 function loadTransactionCategories() {
+	var largeTransactionArray = loadLargeTransactionArray();
 	total = 0;
 	var sections = [];
 	for (var i = 0; i < largeTransactionArray.length; i++) {
@@ -154,5 +156,4 @@ function updateDateFilter() {
 	document.getElementById("enddate").value = "";
 }
 
-console.log(largeTransactionArray);
 displayTransactionList();
