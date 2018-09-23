@@ -154,3 +154,4 @@ function loadLargeTransactionArray() {
 }
 
 loadLargeTransactionArray();
+displayTransactionList();
