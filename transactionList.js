@@ -1,5 +1,3 @@
-var transactionsListOutput = null;
-var transactionsCategoriesOutput = null;
 var startDate = "beginning";
 var endDate = "end";
 var total = 0;
@@ -7,18 +5,22 @@ var total = 0;
 function loadLargeTransactionArray() {
 	$.getJSON('./backend/get_transactions.php', function(data) {
 		total = 0;
-		for (var i = 0; i < data._embedded.transactions.length; i++) {
-			total += data._embedded.transactions.length[i].amount;
-			transactionsListOutput += loadSingleTransaction(data._embedded.transactions[i]);
-			var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
-			temp += transactionsListOutput;
-			document.getElementById("transactionList").innerHTML = temp;
+		var rawTransactions = data._embedded.transactions;
+		var transactions = [];
+		for (var i = 0; i < rawTransactions.length; i++) {
+			total += rawTransactions[i].amount;
+			transactions.push(loadSingleTransaction(rawTransactions[i]));
+			console.log("1: " + i);
 		}
-		
+		document.getElementById("transactionList").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+		//document.getElementById("transactionCategories").innerHTML = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+		for (var i = 0; i < transactions.length; i++) {
+			document.getElementById("transactionList").innerHTML += transactions[i];
+			console.log("2: " + i);
+		}
+		loadMasterCardData();
 	});
 }
-
-loadLargeTransactionArray();
 
 function displayTransactionCategories() {
 	if (transactionsCategoriesOutput == null) {
@@ -87,12 +89,30 @@ function loadSingleTransaction(transaction) {
 		newTransaction += transaction.created.substring(0,10) + ")</h2></td><td>";
 		newTransaction += "<h3 class='textRight'>£" + moneyString + "</h3></td></tr></tbody></table>";
 		newTransaction += "<div id='details_" + transaction.id + "' style='display: none;'>";
-		newTransaction += "<strong>Payment Method: </strong>" + dataParse(transaction.mastercardTransactionMethod) + "<br />";
-		newTransaction += "<strong>Category: </strong>" + dataParse(transaction.spendingCategory) + "<br />";
-		newTransaction += "<strong>Country: </strong>" + transaction.country;// + "<br />";
-		//newTransaction += "<strong class='addresses'>Address of Transaction: </strong>" + transaction.merchantAddress + "<br />";
+		newTransaction += "<strong>Source: </strong>" + dataParse(transaction.source) + "<br />";
+		if (transaction.source.indexOf("MASTER") == -1) {
+			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.source) + "<br />";
+		}
 		newTransaction += "</div></div>";
 		return newTransaction;
+}
+
+function loadMasterCardData() {
+	$.getJSON('./backend/get_mastercardInfo.php', function(data) {
+		console.log(data._embedded.transactions);
+		for (var i = 0; i < data._embedded.transactions.length; i++) {
+			var transaction = data._embedded.transactions[i];
+			var newTransaction = "<strong>Payment Method: </strong>" + dataParse(transaction.mastercardTransactionMethod) + "<br />";
+			newTransaction += "<strong>Category: </strong>" + dataParse(transaction.spendingCategory) + "<br />";
+			newTransaction += "<strong>Country: </strong>" + transaction.country + "<br />";
+			newTransaction += "<strong>Address of Transaction: </strong><span class='address' id='address_" + transaction.id + "'>" + transaction.merchantId + "</span>";
+			document.getElementById("details_" + transaction.id).innerHTML += newTransaction;
+			$.getJSON('./backend/return_demo_merchant_data.php?merchant='+transaction.merchantId, function(data) {
+				console.log(data);
+				document.getElementById("address_" + transaction.id).innerHTML = data.location;
+			});
+		}
+	});
 }
 
 function toggleDetails(id) {
@@ -144,4 +164,4 @@ function updateDateFilter() {
 	document.getElementById("enddate").value = "";
 }
 
-// displayTransactionList();
+loadLargeTransactionArray();
