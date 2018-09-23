@@ -143,7 +143,7 @@ var largeTransactionArray = [
       "sourceCurrency": "GBP",
       "merchantId": "6f03a53a-bbfc-4479-8d4d-abb6a9119d27",
       "merchantLocationId": "6f03a13a-bbfc-4479-8d4d-abb6a9119d27",
-      "spendingCategory": "BILLS_AND_SERVICES 2",
+      "spendingCategory": "BILLS_AND_SERVICES",
       "country": "GBR 2",
       "posTimestamp": 504,
       "authorisationCode": "110966",
@@ -183,6 +183,4 @@ var largeTransactionArray = [
     }
   ]
 }
-]
-
-displayTransactionList(largeTransactionArray);
+];
