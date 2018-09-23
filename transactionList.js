@@ -24,13 +24,9 @@ function loadLargeTransactionArray() {
 }
 
 function displayTransactionCategories() {
-	if (transactionsCategoriesOutput == null) {
-		transactionsCategoriesOutput = "";
+	if (document.getElementById("transactionList").innerHTML.indexOf("section") == -1) {
 		loadTransactionCategories();
 	}
-	var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
-	temp += transactionsCategoriesOutput;
-	document.getElementById("transactionList").innerHTML = temp;
 }
 
 function loadTransactionCategories() {
