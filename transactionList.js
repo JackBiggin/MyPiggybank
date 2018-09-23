@@ -153,4 +153,5 @@ function loadLargeTransactionArray() {
 }
 
 loadLargeTransactionArray();
+console.log(largeTransactionArray);
 displayTransactionList();
