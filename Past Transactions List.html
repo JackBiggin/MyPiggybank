@@ -59,6 +59,8 @@
 			<div>
 				<div class='btn btn-outline-dark' onclick='displayTransactionList(largeTransactionArray)'>Display Transactions by Date</div>
 				<div class='btn btn-outline-dark' onclick='displayTransactionCategories(largeTransactionArray)'>Display Transactions by Category</div>
+				<form style="float:left;"><input type="text" id="startdate" placeholder="Start Date (yyyy-mm-dd)"><input type="text" id="enddate" placeholder="End Date (yyyy-mm-dd)"></form>
+				<div class='btn btn-outline-dark' onclick='updateDateFilter()'>Update Date Filters</div>
 			</div>
 			<div id="transactionList"></div>
         </div>
