@@ -26,8 +26,10 @@ function loadLargeTransactionArray() {
 
 function displayTransactionCategories() {
 	if (document.getElementById("transactionList").innerHTML.indexOf("section") == -1) {
+		console.log("Started read");
 		loadTransactionCategories();
 		document.getElementById("transactionList").innerHTML = transactionsCategories;
+		console.log("ended read");
 	}
 }
 
