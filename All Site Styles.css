@@ -63,3 +63,7 @@ html {
     border-radius: .25rem;
 	display: inline-block;
 }
+.sized {
+    width: 350px;
+    Height: px;
+}

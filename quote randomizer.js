@@ -7,6 +7,6 @@ $(document).ready(function(){
     "<h5>Allocate at Least 20% of Your Income Toward Financial Priorities</h5><p>By priorities, we mean building up emergency savings, paying off debt, and padding your retirement nest egg. </p>",
 ];
     //document.body.innerHTML = cars[Math.random(0,cars.length())];
-    var random = Math.random(0, facts.length);
-    document.getElementById('randomFact').innerHTML = facts[random];
+    var random = facts[Math.floor(Math.random() * facts.length)];
+    document.getElementById('randomFact').innerHTML = random;
 });
