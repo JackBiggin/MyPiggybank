@@ -6,6 +6,7 @@ var total = 0;
 
 function loadLargeTransactionArray() {
 	var json = jQuery.getJSON("./backend/get_transactions.php", function(json){});
+	console.log(json);
 	return json.responseJSON._embedded.transactions;
 }
 
