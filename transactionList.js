@@ -39,6 +39,7 @@ function loadTransactionCategories() {
 	var input = document.getElementById("transactionList").innerHTML;
 	while(input.length > -1) {
 		largeTransactionArray.push(input.substring(0, input.indexOf("</div>")+10));
+		console.log(input.substring(0, input.indexOf("</div>")+10));
 		input = input.substring(input.indexOf("</div>")+10);
 	}
 	console.log("Starting loop");
