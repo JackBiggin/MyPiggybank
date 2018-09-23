@@ -6,23 +6,19 @@ var total = 0;
 
 function loadLargeTransactionArray() {
 	$.getJSON('./backend/get_transactions.php', function(data) {
+		total = 0;
 		for (var i = 0; i < data._embedded.transactions.length; i++) {
-			document.getElementById("temp").innerHTML += loadSingleTransaction(data._embedded.transactions[i]);
+			total += largeTransactionArray[t].amount;
+			transactionsListOutput += loadSingleTransaction(loadSingleTransaction(data._embedded.transactions[i]);
+			var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+			temp += transactionsListOutput;
+			document.getElementById("transactionList").innerHTML = temp;
 		}
+		
 	});
 }
 
 loadLargeTransactionArray();
-
-function displayTransactionList() {
-	if (transactionsListOutput == null) {
-		transactionsListOutput = "";
-		loadTransactionList();
-	}
-	var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
-	temp += transactionsListOutput;
-	document.getElementById("transactionList").innerHTML = temp;
-}
 
 function displayTransactionCategories() {
 	if (transactionsCategoriesOutput == null) {
@@ -148,4 +144,4 @@ function updateDateFilter() {
 	document.getElementById("enddate").value = "";
 }
 
-displayTransactionList();
+// displayTransactionList();
