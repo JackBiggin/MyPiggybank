@@ -146,6 +146,6 @@ function updateDateFilter() {
 
 function loadLargeTransactionArray(largeArray) {
 	jQuery.getJSON("/backend/get_transactions.php", function(json) {
-		var largeTransactionArray = json;
+		largeTransactionArray = json;
 	});
 }
