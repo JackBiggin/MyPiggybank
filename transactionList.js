@@ -33,7 +33,7 @@ function displayTransactionCategories() {
 
 function loadTransactionCategories() {
 	transactionsCategories = "";
-	var largeTransactionArray = document.getElementById("transactionList").innerHTML.split("</div></div>");
+	var largeTransactionArray = document.getElementById("transactionList").innerHTML.split(/<\/div>\s+<\/div>/);
 	for (var i = 0; i < largeTransactionArray; i++) {
 		console.log(largeTransactionArray[1]);
 	}
