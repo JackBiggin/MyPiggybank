@@ -46,7 +46,7 @@ function loadTransactionCategories(largeTransactionArray) {
 			total += pageTransactionsArray[t].amount;
 			var added = false;
 			for (var s = 0; s < sections.length; s++) {
-				if (sections[s].category.indexOf(transaction.spendingCategory) > -1) {
+				if (sections[s].category.indexOf(dataParse(transaction.spendingCategory)) > -1) {
 					added = true;
 					sections[s].amount += transaction.amount;
 					sections[s].transactionsList += loadSingleTransaction(transaction);
@@ -55,12 +55,12 @@ function loadTransactionCategories(largeTransactionArray) {
 			}
 			if (!added) {
 				var newSection = {
-					"category": transaction.spendingCategory,
+					"category": dataParse(transaction.spendingCategory),
 					"amount": transaction.amount,
 					"percent": 0,
 					"transactionsList": loadSingleTransaction(transaction),
-					"header1": "<div class='section'><table id='" + transaction.spendingCategory + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + transaction.spendingCategory + "</h2></td><td><h3 class='textRight'>",
-					"header2": "</h3></td></tr></tbody></table><div id='details_" + transaction.spendingCategory + "' style='display: none;'>"
+					"header1": "<div class='section'><table id='" + dataParse(transaction.spendingCategory) + "' onclick='toggleDetails(this.id)' width='100%'><tbody><tr><td><h2>" + dataParse(transaction.spendingCategory) + "</h2></td><td><h3 class='textRight'>",
+					"header2": "</h3></td></tr></tbody></table><div id='details_" + dataParse(transaction.spendingCategory) + "' style='display: none;'>"
 				}
 				sections.push(newSection);
 			}
@@ -86,8 +86,8 @@ function loadSingleTransaction(transaction) {
 		newTransaction += transaction.created.substring(0,10) + ")</h2></td><td>";
 		newTransaction += "<h3 class='textRight'>£" + moneyString + "</h3></td></tr></tbody></table>";
 		newTransaction += "<div id='details_" + transaction.id + "' style='display: none;'>";
-		newTransaction += "<strong>Payment Method: </strong>" + transaction.mastercardTransactionMethod + "<br />";
-		newTransaction += "<strong>Category: </strong>" + transaction.spendingCategory + "<br />";
+		newTransaction += "<strong>Payment Method: </strong>" + dataParse(transaction.mastercardTransactionMethod) + "<br />";
+		newTransaction += "<strong>Category: </strong>" + dataParse(transaction.spendingCategory) + "<br />";
 		newTransaction += "<strong>Country: </strong>" + transaction.country;// + "<br />";
 		//newTransaction += "<strong class='addresses'>Address of Transaction: </strong>" + transaction.merchantAddress + "<br />";
 		newTransaction += "</div></div>";
@@ -101,4 +101,19 @@ function toggleDetails(id) {
 	} else {
 		document.getElementById("details_" + id).style.display = "none";
 	}
+}
+
+function dataParse(rawData) {
+	var output = "";
+	var i = rawData.indexOf("_");
+	while (true) {
+		if (i == -1) {
+			output += rawData.substring(0, 1) + rawData.substring(1, rawData.length).toLowerCase();
+			break;
+		}
+		output += rawData.substring(0, 1) + rawData.substring(1, i).toLowerCase() + " ";
+		rawData = rawData.substring(i+1);
+		i = rawData.indexOf("_");
+	}
+	return output;
 }
