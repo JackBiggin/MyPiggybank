@@ -2,6 +2,19 @@
 session_start();
 $access_token = $_SESSION['access_token'];
 
+if(isset($_GET['from'])) {
+    $from = htmlspecialchars('?from=' . $_GET['from']);
+} else {
+    $from = "";
+}
+
+
+if(isset($_GET['to'])) {
+    $from = htmlspecialchars('&to=' . $_GET['to']);
+} else {
+    $from = "";
+}
+
 $ch = curl_init();
 
 curl_setopt($ch,CURLOPT_URL,'https://api-sandbox.starlingbank.com/api/v1/transactions');
