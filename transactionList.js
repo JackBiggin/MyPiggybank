@@ -9,7 +9,7 @@ function loadLargeTransactionArray() {
 		total = 0;
 		for (var i = 0; i < data._embedded.transactions.length; i++) {
 			total += largeTransactionArray[t].amount;
-			transactionsListOutput += loadSingleTransaction(loadSingleTransaction(data._embedded.transactions[i]);
+			transactionsListOutput += loadSingleTransaction(data._embedded.transactions[i]);
 			var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
 			temp += transactionsListOutput;
 			document.getElementById("transactionList").innerHTML = temp;
