@@ -26,6 +26,7 @@ body {
     background-image: linear-gradient(to top, #FFFFFF, #6DD5FA 50%, #2980B9 100%);
     background-size: fill;
     height: 100%;
+    background-attachment: fixed;
 }
 
 html {
@@ -52,4 +53,13 @@ html {
 
 .section {
     
+}
+
+.inputBox {
+    border: 1px solid #343a40;;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+	display: inline-block;
 }

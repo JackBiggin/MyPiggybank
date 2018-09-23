@@ -1,30 +1,31 @@
+var largeTransactionArray;
 var transactionsListOutput = null;
 var transactionsCategoriesOutput = null;
-var startDate = null;
-var endDate = null;
+var startDate = "beginning";
+var endDate = "end";
 var total = 0;
 
-function displayTransactionList(largeTransactionArray) {
+function displayTransactionList() {
 	if (transactionsListOutput == null) {
 		transactionsListOutput = "";
-		loadTransactionList(largeTransactionArray);
+		loadTransactionList();
 	}
-	var temp = "<table width='100%'><tbody><tr><td><h1>Transaction List from " + startDate + " to " + endDate + "</h1></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+	var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
 	temp += transactionsListOutput;
 	document.getElementById("transactionList").innerHTML = temp;
 }
 
-function displayTransactionCategories(largeTransactionArray) {
+function displayTransactionCategories() {
 	if (transactionsCategoriesOutput == null) {
 		transactionsCategoriesOutput = "";
-		loadTransactionCategories(largeTransactionArray);
+		loadTransactionCategories();
 	}
-	var temp = "<table width='100%'><tbody><tr><td><h1>Transaction List from " + startDate + " to " + endDate + "</h1></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
+	var temp = "<table width='100%'><tbody><tr><td><h1 style='display: float;'>Transactions</h1><td>(" + startDate + " to " + endDate + ")</td></td><td><h2 class='textRight'>Net Change in Balance: £" + total + "</h2></td></tr></tbody></table>";
 	temp += transactionsCategoriesOutput;
 	document.getElementById("transactionList").innerHTML = temp;
 }
 
-function loadTransactionList(largeTransactionArray) {
+function loadTransactionList() {
 	total = 0;
 	for (var i = 0; i < largeTransactionArray.length; i++) {
 		var pageTransactionsArray = largeTransactionArray[i].transactions;
@@ -36,7 +37,7 @@ function loadTransactionList(largeTransactionArray) {
 	}
 }
 
-function loadTransactionCategories(largeTransactionArray) {
+function loadTransactionCategories() {
 	total = 0;
 	var sections = [];
 	for (var i = 0; i < largeTransactionArray.length; i++) {
@@ -116,4 +117,35 @@ function dataParse(rawData) {
 		i = rawData.indexOf("_");
 	}
 	return output;
+}
+
+function updateDateFilter() {
+	var tempStart = document.getElementById("startdate").value;
+	var tempEnd = document.getElementById("enddate").value;
+	if (tempStart.length == 0 || tempEnd.length == 0 || startDate.indexOf(tempStart) < 0 || endDate.indexOf(tempEnd) < 0) {
+		transactionsListOutput = null;
+		transactionsCategoriesOutput = null;
+		startDate = tempStart;
+		endDate = tempEnd;
+		if (startDate.length != 10) {
+			startDate = "beginning";
+		}
+		if (endDate.length != 10) {
+			endDate = "end";
+		}
+		if (document.getElementById("transactionList").innerHTML.indexOf("section") > -1) {
+			displayTransactionCategories();
+		} else {
+			displayTransactionList();
+		}
+		var output = "";
+	}
+	document.getElementById("startdate").value = "";
+	document.getElementById("enddate").value = "";
+}
+
+function loadLargeTransactionArray(largeArray) {
+	jQuery.getJSON("/backend/get_transactions.php", function(json) {
+		var largeTransactionArray = json;
+	});
 }

@@ -13,10 +13,8 @@
 
     <link rel="stylesheet" href="./assets/css/app.css">
     <link rel="stylesheet" href="All%20Site%20Styles.css">
-
-	<script type="text/javascript" src="transactionList.js"></script>
-
-    <title>myPiggybank</title>
+	
+	<title>myPiggybank</title>
 </head>
 
 <body>
@@ -56,21 +54,25 @@
     </nav><br />
     <div class="container">
 		<div class="whiteBackground">
-			<div>
-				<div class='btn btn-outline-dark' onclick='displayTransactionList(largeTransactionArray)'>Display Transactions by Date</div>
-				<div class='btn btn-outline-dark' onclick='displayTransactionCategories(largeTransactionArray)'>Display Transactions by Category</div>
-			</div>
+			<form>
+				<div style="display: inline-block"><span style="display: block" class='btn btn-outline-dark' onclick='displayTransactionList(largeTransactionArray)'>Display Transactions by Date</span></div>
+				<div style="display: inline-block"><span style="display: block" class='btn btn-outline-dark' onclick='displayTransactionCategories(largeTransactionArray)'>Display Transactions by Category</span></div>
+				<div style="display: inline-block"><input class="inputBox" type="text" id="startdate" placeholder="Start Date (yyyy-mm-dd)"></div>
+				<div style="display: inline-block"><input class="inputBox" type="text" id="enddate" placeholder="End Date (yyyy-mm-dd)"></div>
+				<div style="display: inline-block"><span style="display: block" class='btn btn-outline-dark' onclick='updateDateFilter()'>Update Date Filters</span></div>
+			</form>
 			<div id="transactionList"></div>
         </div>
     </div>
-	<script type="text/javascript" src="testFile.js"></script>
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+	<script type="text/javascript" src="transactionList.js"></script>
+	<script type="text/javascript" src="testFile.js"></script>
+	</body>
 
 </html>
