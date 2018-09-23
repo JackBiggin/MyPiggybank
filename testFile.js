@@ -1,4 +1,4 @@
-var largeTransactionArray = [
+/*var largeTransactionArray = [
 {
   "nextPage": {
     "href": "string",
@@ -186,4 +186,4 @@ var largeTransactionArray = [
 ];
 
 loadLargeTransactionArray(largeTransactionArray);
-displayTransactionList();
+displayTransactionList();*/
