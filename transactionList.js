@@ -144,10 +144,12 @@ function updateDateFilter() {
 	document.getElementById("enddate").value = "";
 }
 
-function loadLargeTransactionArray(largeArray) {
+function loadLargeTransactionArray() {
 	jQuery.getJSON("./backend/get_transactions.php", function(json) {
 		console.log("This is a test");
 		console.log(json.transactions);
 		largeTransactionArray = [json.transactions];
 	});
 }
+
+loadLargeTransactionArray();
