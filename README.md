@@ -1,1 +1,1 @@
-myPiggybank
+> ⚠️ This is a Hackathon entry for GrizzHacks3, and was created in under 24 hours. The code in this repo is likely to be hacky and potentially unstable/insecure, so please be careful if forking this repo.
